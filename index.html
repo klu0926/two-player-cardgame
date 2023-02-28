@@ -1,0 +1,175 @@
+<!--翻牌遊戲-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Game</title>
+  <!--icon-->
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/3004/3004163.png" type="image/x-icon">
+  <!--bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!--font awesome-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+  <!--css-->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!--top nav-->
+  <div class="d-flex align-items-center justify-content-between px-4 py-2 m-0 bg-light border-bottom">
+    <!--Left : title-->
+    <div class="d-flex">
+      <i class="poker-icon me-2"></i>
+      <h4 class="mt-2 fw-bold">CARD GAME</h4>
+    </div>
+
+    <!--right : share coin / card amount /cheat mode-->
+    <div class="d-flex justify-content-center align-items-center">
+      <!--Share coins-->
+      <div class="share-coins d-flex align-items-center align-items-center me-3 fw-bold ">
+        Share coins: <span id="share-coin" class="ms-1">0</span>
+        <span class="i-coin ms-1"></span>
+      </div>
+      <!--Difficulty-->
+      <div class="difficulty-dropdown">
+        <button class="difficulty-btn btn btn-primary py-1">
+          Difficulty : <span id="cards-amount"></span> cards
+        </button>
+        <div class="difficulty-content">
+          <a class="difficulty-selector" href="#" data-cards="12">
+            12 cards
+          </a>
+          <a class="difficulty-selector" href="#" data-cards="26">
+            26 cards
+          </a>
+          <a class="difficulty-selector" href="#" data-cards="39">
+            39 cards
+          </a>
+          <a class="difficulty-selector" href="#" data-cards="52">
+            52 cards
+          </a>
+        </div>
+      </div>
+      <!--cheat button-->
+      <button id="cheat-mode-btn" class="btn btn-success py-1" style="font-size: 14px;">Cheat Mode <span
+          id="cheat-mode-text">OFF</span>
+        <i id="cheat-mode-icon" class="ms-1 fa-solid fa-eye"></i>
+      </button>
+    </div>
+  </div>
+
+
+  <!--main container-->
+  <div class="main-container container-fluid">
+
+    <!--players container-->
+    <div id="players-container" class="players-container  container-fluid d-flex">
+
+      <!--player one-->
+      <div id="player-1-box" class="player-box player-active">
+        <img id="player-1-avatar" class="player-img" data-id="1" src="/images/avatar/starter/10.png"
+          data-toggle="tooltip" data-placement="right" title="change avatar" data-bs-custom-class="custom-tooltip">
+
+        <!--player name-->
+        <div class="player-name-container">
+          <div id="player-name-1" class="player-name" data-toggle="tooltip" data-bs-placement="right"
+            title="change name" data-bs-custom-class="custom-tooltip" data-id="1">
+            Player One</div>
+          <!--name input-->
+          <div class="name-input input-group mb-3 hide">
+            <input id="name-input-1" type="text" class="form-control name-input" data-id="1" placeholder="Player name"
+              aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+
+        <p id="player-1-score-box" class="player-score-box">
+          <span id="player-1-id">Coins: </span>
+          <span id="player-1-score" class="score">0</span>
+          <span class="i-coin"></span>
+        </p>
+        <!--Avatar Menu-->
+        <div id="avatar-page-one" class="avatar-page hide">
+        </div>
+      </div>
+
+      <!--pointer-->
+      <div id="player-pointer" class="player-box d-flex align-items-center">
+        <!--current player-->
+        <p class="pointer-top">Current Player</p>
+        <p id="current-player" class="pointer-player">Player One</p>
+      </div>
+
+      <!--player two-->
+      <div id="player-2-box" class="player-box">
+        <img id="player-2-avatar" class="player-img" data-id="2" src="/images/avatar/starter/3.png"
+          data-toggle="tooltip" data-placement="right" title="change avatar" data-bs-custom-class="custom-tooltip">
+        <!--player name-->
+        <div class="player-name-container">
+          <div id="player-name-2" class="player-name" data-toggle="tooltip" data-bs-placement="left" title="change name"
+            data-bs-custom-class="custom-tooltip" data-id="2">
+            Player Two</div>
+          <!--name input-->
+          <div class="name-input input-group mb-3 hide">
+            <input id="name-input-2" type="text" class="form-control name-input" data-id="2" placeholder="Player name"
+              aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+        <p id="player-2-score-box" class="player-score-box">
+          <span id="player-2-id">Coins: </span>
+          <span id="player-2-score" class="score">0</span>
+          <span class="i-coin"></span>
+        </p>
+        <!--Avatar Menu-->
+        <div id="avatar-page-two" class="avatar-page hide">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Cards container-->
+  <div id="cards-container" class="card-container mt-2 d-flex flex-wrap justify-content-around">
+    <!--insert cards-->
+  </div>
+
+  <!--End Game Screen : hidden -->
+  <div id="end-game-screen" class="hide">
+    <h1>Congratulations!</h1>
+    <img id="winner-avatar" class="winner-avatar" src="/images/avatar/starter/3.png"></img>
+    <h4 id="winner-name" class="winner-name">Player Two</h4>
+    <div class="winner-coin">
+      <h4>Coins win : </h4>
+      <span id="end-score">900</span>
+      <span class="i-coin"></span>
+    </div>
+    <button id="play-again-btn" class="play-again-btn btn btn-danger mt-2">PLAY AGAIN</button>
+  </div>
+
+  <!--end : main container-->
+  </div>
+
+  <!--footer-->
+  <div id="footer" class="d-flex justify-content-center align-items-center border-top bg-light pt-3 mt-5">
+    <p class="text-secondary">This game is a project created for Alpha Camp's online
+      courses. Images from
+      <a href="https://www.flaticon.com/ " target="_blank">flaticon.com</a>.
+    </p>
+  </div>
+
+
+
+  <!--jquery--->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!--script bootstrap bundle with popper-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <!--my js-->
+  <script src="index.js"></script>
+</body>
+
+</html>
