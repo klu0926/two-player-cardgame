@@ -80,13 +80,13 @@ const model = {
       id: "1",
       name: "player One",
       scores: 0,
-      avatar: "../images/avatar/starter/27.png",
+      avatar: "images/avatar/starter/27.png",
     },
     playerTwo = {
       id: "2",
       name: "player Two",
       scores: 0,
-      avatar: "../images/avatar/starter/7.png",
+      avatar: "images/avatar/starter/7.png",
     },
   ],
 
